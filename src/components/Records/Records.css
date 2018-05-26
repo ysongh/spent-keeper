@@ -1,18 +1,15 @@
 .row{
     width: 100%;
-    background-color: #fa923f;
     color: white;
     font-size: 1.8rem;
     text-align: center;
-    padding: 20px 0;
     box-sizing: border-box;
 }
 .table {
+    width: 90%;
     font-family: arial, sans-serif;
     border-collapse: collapse;
     border-style: ridge;
-    margin-top: 10px; 
-    margin-bottom: 50px;
     margin: 0 auto;
     background-color:rgb(255, 165, 50);
 }
