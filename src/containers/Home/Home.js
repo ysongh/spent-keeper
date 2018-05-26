@@ -1,21 +1,25 @@
 import React, {Component} from 'react';
+import { connect } from 'react-redux';
+
 import Records from '../../components/Records/Records';
+import classes from './Home.css';
 
 class Home extends Component{
-    state = {
-        items: [
-            { purchaseId: 'rrwe543g', purchaseName: 'Book', price: 7.99, date:'01-20-2018'},
-            { purchaseId: '34g4gf43', purchaseName: 'Pen', price: 1.99, date:'01-22-2018'},
-            { purchaseId: '3g7ikfs4', purchaseName: 'Water', price: 0.99, date:'01-26-2018'}
-        ]
-    }
+
     render() {
         return (
             <div>
-                <Records items={this.state.items}/>
+                <h1>Welcome to Spent Keeper</h1>
+                <Records />
             </div>
         );
     }
 }
 
-export default Home;
+const mapStateToProps = state => {
+    return{
+        price: state.record.price
+    };
+};
+
+export default connect(mapStateToProps)(Home);
