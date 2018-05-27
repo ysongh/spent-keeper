@@ -1,5 +1,13 @@
 h1{
-    text-align: center
+    text-align: center;
+}
+
+button{
+    display: block;
+    margin: 0 auto;
+    margin-top: 20px;
+    padding: 5px;
+    width: 20%;
 }
 
 .row{

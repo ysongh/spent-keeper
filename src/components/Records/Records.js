@@ -18,12 +18,11 @@ class record extends Component{
                         </tr>
                     </thead>
                      <tbody>
-                        <tr>
-                            <td>{this.props.purchaseId}</td>
-                            <td>{this.props.purchaseName}</td>
-                            <td>{this.props.price}</td>
-                            <td>{this.props.date}</td>
-                        </tr>
+                        {this.props.items.map(item => (
+                            <tr>
+                                <td key={item.id}>{item.value}</td>
+                            </tr>
+                        ))}
                     </tbody>
                 </table>
             </div>
@@ -33,6 +32,7 @@ class record extends Component{
 
 const mapStateToProps = state => {
     return{
+        items: state.record.items,
         purchaseId: state.record.purchaseId,
         purchaseName: state.record.purchaseName,
         price: state.record.price,

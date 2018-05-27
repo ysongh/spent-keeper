@@ -1,17 +1,20 @@
+import * as actionTypes from '../actions/actionTypes';
 import { updateObject }  from '../utility';
 
 const initialState = {
-    purchaseId: 'rrwe543g',
-    purchaseName: 'Book', 
-    price: 7.99, 
-    date:'01-20-2018'
+   items: ["pen"]
 };
 
-const recordInit = (state = initialState, action) => {
-    return updateObject(state);
+const reducer = (state = initialState, action) => {
+    switch(action.type){
+        case actionTypes.ADD_ITEM:
+            return updateObject(state, {items: state.items.concat({id: new Date(), value: action.item})});
+        default:
+            return state;
+    }
 };
 
-export default recordInit;
+export default reducer;
 
 /*{ purchaseId: 'rrwe543g', purchaseName: 'Book', price: 7.99, date:'01-20-2018'},
             { purchaseId: '34g4gf43', purchaseName: 'Pen', price: 1.99, date:'01-22-2018'},
