@@ -6,13 +6,26 @@ import classes from './Home.css';
 import * as actionCreators from '../../store/actions/index';
 
 class Home extends Component{
-
+    state = {
+        pName: ''
+    }
+    
+    newPNameChangedHandler = (newPName) => {
+        this.setState({ pName: newPName.target.value});
+    }
+    
     render() {
         return (
             <div>
                 <h1 className={classes.h1}>Welcome to Spent Keeper</h1>
                 <Records />
-                <button className={classes.button} onClick={() => this.props.onStoreItem("hi")}>Store Result</button>
+                <div className={classes.form}>
+                    <p>Item Name</p>
+                    <input
+                        type="text"
+                        onChange={this.newPNameChangedHandler} />
+                    <button onClick={() => this.props.onStoreItem(this.state.pName)}>Add Item Name</button>
+                </div>
             </div>
         );
     }
