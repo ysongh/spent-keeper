@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
+import axios from '../../axios-lists';
 
-import './ItemList.css';
+import classes from './ItemList.css';
 
 class ItemList extends Component{
     state = {
@@ -11,22 +12,52 @@ class ItemList extends Component{
         ]
     }
     
+    addItemHandler = () => {
+        const list = {
+            lists:{
+                purchaseId: '234534',
+                purchaseName: 'Paper',
+                price: 1.99,
+                date:'01-25-2018'
+            }
+        };
+        
+        axios.post('/lists.json', list)
+            .then(response => console.log(response))
+            .catch(error => console.log(error));
+    }
+    
     render () {
         return (
             <div>
                 <h1>Your List</h1>
-                {
-                    this.state.lists.map( list => {
-                        return (
-                            <p
-                                key={list.purchaseId}>
-                                <article>{list.purchaseName}</article>
-                                <article>{list.price}</article>
-                                <article>{list.date}</article>
-                            </p>
-                        );
-                    })
-                }
+                <div className={classes.row}>
+                    <table className={classes.table}>
+                        <thead>
+                            <tr> 
+                                <th>Purchase ID</th>
+                                <th>Purchase Name</th>
+                                <th>Price</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                         <tbody>
+                            {
+                                this.state.lists.map( list => {
+                                    return (
+                                        <tr
+                                            key={list.purchaseId}>
+                                            <td>{list.purchaseId}</td>
+                                            <td>{list.purchaseName}</td>
+                                            <td>{list.price}</td>
+                                            <td>{list.date}</td>
+                                        </tr>
+                                    );
+                                })
+                            }
+                        </tbody>
+                    </table>
+                </div>
             </div>
         );
     }
