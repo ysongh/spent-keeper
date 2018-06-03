@@ -2,24 +2,35 @@ import React, {Component} from 'react';
 import axios from '../../axios-lists';
 
 import classes from './ItemList.css';
+import Aux from '../../Aux';
 
 class ItemList extends Component{
     state = {
-        lists: [
-            { purchaseId: 'rrwe543g', purchaseName: 'Book', price: 7.99, date:'01-20-2018'},
-            { purchaseId: '34g4gf43', purchaseName: 'Pen', price: 1.99, date:'01-22-2018'},
-            { purchaseId: '3g7ikfs4', purchaseName: 'Water', price: 0.99, date:'01-26-2018'}
-        ]
+        lists: []
+    }
+    
+    componentDidMount(){
+        axios.get('https://spentkeeper.firebaseio.com/lists.json')
+            .then(res => {
+                const fetchedLists = [];
+                for(let key in res.data){
+                    fetchedLists.push({
+                        ...res.data[key],
+                        id: key
+                    });
+                }
+                console.log(res.data);
+                this.setState({lists: fetchedLists});
+            })
+            .catch(error => {});
     }
     
     addItemHandler = () => {
         const list = {
-            lists:{
-                purchaseId: '234534',
-                purchaseName: 'Paper',
-                price: 1.99,
-                date:'01-25-2018'
-            }
+            purchaseId: '234534',
+            purchaseName: 'Paper',
+            price: 1.99,
+            date:'01-25-2018'
         };
         
         axios.post('/lists.json', list)
@@ -28,6 +39,29 @@ class ItemList extends Component{
     }
     
     render () {
+        let list = <p>loading...</p>;
+        
+        if(this.state.lists){
+            list = (
+                <Aux>
+                    {
+                        this.state.lists.map( list => {
+                            return (
+                                <tr
+                                    key={list.purchaseId}>
+                                    <td>{list.purchaseId}</td>
+                                    <td>{list.purchaseName}</td>
+                                    <td>{list.price}</td>
+                                    <td>{list.date}</td>
+                                </tr>
+                            );
+                        })
+                        
+                    }
+                    </Aux>
+                );
+        }
+        
         return (
             <div>
                 <h1>Your List</h1>
@@ -42,19 +76,7 @@ class ItemList extends Component{
                             </tr>
                         </thead>
                          <tbody>
-                            {
-                                this.state.lists.map( list => {
-                                    return (
-                                        <tr
-                                            key={list.purchaseId}>
-                                            <td>{list.purchaseId}</td>
-                                            <td>{list.purchaseName}</td>
-                                            <td>{list.price}</td>
-                                            <td>{list.date}</td>
-                                        </tr>
-                                    );
-                                })
-                            }
+                            {list}
                         </tbody>
                     </table>
                 </div>
