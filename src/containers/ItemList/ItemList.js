@@ -58,6 +58,7 @@ class ItemList extends Component{
                         </tbody>
                     </table>
                 </div>
+                <button onClick={this.addItemHandler}>Add Item</button>
             </div>
         );
     }
