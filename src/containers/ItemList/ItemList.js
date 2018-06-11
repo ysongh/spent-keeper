@@ -5,11 +5,19 @@ import classes from './ItemList.css';
 import Aux from '../../Aux';
 
 class ItemList extends Component{
-    state = {
-        lists: []
+    constructor(){
+        super();
+        this.state = {
+            lists: [],
+            id: '',
+            name: '',
+            price: '',
+            date:''
+        };
+        this.onChange = this.onChange.bind(this);
     }
     
-    componentDidMount(){
+    componentWillMount(){
         axios.get('https://spentkeeper.firebaseio.com/lists.json')
             .then(res => {
                 const fetchedLists = [];
@@ -25,17 +33,22 @@ class ItemList extends Component{
             .catch(error => {});
     }
     
-    addItemHandler = () => {
+    addItemHandler = (event) => {
+        //event.preventDefault();
         const list = {
-            purchaseId: '234534',
-            purchaseName: 'Paper',
-            price: 1.99,
-            date:'01-25-2018'
+            purchaseId: this.state.id,
+            purchaseName: this.state.name,
+            price: this.state.price,
+            date: this.state.date
         };
         
         axios.post('/lists.json', list)
             .then(response => console.log(response))
             .catch(error => console.log(error));
+    }
+    
+    onChange(e){
+        this.setState({[e.target.name]: e.target.value});
     }
     
     render () {
@@ -80,7 +93,29 @@ class ItemList extends Component{
                         </tbody>
                     </table>
                 </div>
-                <button onClick={this.addItemHandler}>Add Item</button>
+                <form>
+                    <input type="name"
+                        placeholder="Item ID"
+                        name="id"
+                        value={this.state.id}
+                        onChange={this.onChange} />
+                    <input type="name"
+                        placeholder="Item Name"
+                        name="name"
+                        value={this.state.name}
+                        onChange={this.onChange} />
+                    <input type="number"
+                        placeholder="Price"
+                        name="price"
+                        value={this.state.price}
+                        onChange={this.onChange} />
+                    <input type="date"
+                        placeholder="date"
+                        name="date"
+                        value={this.state.date}
+                        onChange={this.onChange} />
+                    <button onClick={this.addItemHandler}>Add Item</button>
+                </form>
             </div>
         );
     }
