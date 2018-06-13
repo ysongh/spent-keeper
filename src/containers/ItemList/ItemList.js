@@ -46,6 +46,9 @@ class ItemList extends Component{
             .then(response => console.log(response))
             .catch(error => console.log(error));
     }
+    clearItem = () => {
+        axios.delete('/lists.json');
+    }
     
     onChange(e){
         this.setState({[e.target.name]: e.target.value});
@@ -115,6 +118,9 @@ class ItemList extends Component{
                         value={this.state.date}
                         onChange={this.onChange} />
                     <button onClick={this.addItemHandler}>Add Item</button>
+                </form>
+                <form>
+                    <button onClick={this.clearItem}>Clear All Item</button>
                 </form>
             </div>
         );
