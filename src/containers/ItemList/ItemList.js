@@ -14,7 +14,7 @@ class ItemList extends Component{
             name: '',
             price: '',
             date:'',
-            adding: false,
+            addingModal: false,
         };
         this.onChange = this.onChange.bind(this);
     }
@@ -57,11 +57,11 @@ class ItemList extends Component{
     }
     
     addModalHandler = () => {
-        this.setState({adding: true});
+        this.setState({addingModal: true});
     }
     
-    closeModal = () => {
-        this.setState({modalIsOpen: false});
+    closeModalHandler = () => {
+        this.setState({addingModal: false});
     }
     
     render () {
@@ -110,7 +110,7 @@ class ItemList extends Component{
                 <form>
                     <button onClick={this.clearItem}>Clear All Item</button>
                 </form>
-                <Modal show={this.state.adding}>
+                <Modal show={this.state.addingModal} modalClosed={this.closeModalHandler}>
                     <form>
                         <input type="name"
                             placeholder="Item ID"
