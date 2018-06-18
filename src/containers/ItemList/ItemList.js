@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import axios from '../../axios-lists';
 
 import classes from './ItemList.css';
+import Modal from '../../components/UI/Modal/Modal';
 import Aux from '../../Aux';
 
 class ItemList extends Component{
@@ -12,7 +13,8 @@ class ItemList extends Component{
             id: '',
             name: '',
             price: '',
-            date:''
+            date:'',
+            adding: false,
         };
         this.onChange = this.onChange.bind(this);
     }
@@ -52,6 +54,14 @@ class ItemList extends Component{
     
     onChange(e){
         this.setState({[e.target.name]: e.target.value});
+    }
+    
+    addModalHandler = () => {
+        this.setState({adding: true});
+    }
+    
+    closeModal = () => {
+        this.setState({modalIsOpen: false});
     }
     
     render () {
@@ -96,32 +106,35 @@ class ItemList extends Component{
                         </tbody>
                     </table>
                 </div>
-                <form>
-                    <input type="name"
-                        placeholder="Item ID"
-                        name="id"
-                        value={this.state.id}
-                        onChange={this.onChange} />
-                    <input type="name"
-                        placeholder="Item Name"
-                        name="name"
-                        value={this.state.name}
-                        onChange={this.onChange} />
-                    <input type="number"
-                        placeholder="Price"
-                        name="price"
-                        value={this.state.price}
-                        onChange={this.onChange} />
-                    <input type="date"
-                        placeholder="date"
-                        name="date"
-                        value={this.state.date}
-                        onChange={this.onChange} />
-                    <button onClick={this.addItemHandler}>Add Item</button>
-                </form>
+                <button onClick={this.addModalHandler}>Add</button>
                 <form>
                     <button onClick={this.clearItem}>Clear All Item</button>
                 </form>
+                <Modal show={this.state.adding}>
+                    <form>
+                        <input type="name"
+                            placeholder="Item ID"
+                            name="id"
+                            value={this.state.id}
+                            onChange={this.onChange} />
+                        <input type="name"
+                            placeholder="Item Name"
+                            name="name"
+                            value={this.state.name}
+                            onChange={this.onChange} />
+                        <input type="number"
+                            placeholder="Price"
+                            name="price"
+                            value={this.state.price}
+                            onChange={this.onChange} />
+                        <input type="date"
+                            placeholder="date"
+                            name="date"
+                            value={this.state.date}
+                            onChange={this.onChange} />
+                        <button onClick={this.addItemHandler}>Add Item</button>
+                    </form>
+                </Modal>
             </div>
         );
     }
