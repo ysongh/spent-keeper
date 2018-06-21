@@ -36,7 +36,7 @@ class ItemList extends Component{
     }
     
     addItemHandler = (event) => {
-        //event.preventDefault();
+        event.preventDefault();
         const list = {
             purchaseId: this.state.id,
             purchaseName: this.state.name,
@@ -134,6 +134,7 @@ class ItemList extends Component{
                             onChange={this.onChange} />
                         <button onClick={this.addItemHandler}>Add Item</button>
                     </form>
+                    <button onClick={this.closeModalHandler}>Cancel</button>
                 </Modal>
             </div>
         );
