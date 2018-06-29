@@ -3,6 +3,7 @@ import axios from '../../axios-lists';
 
 import classes from './ItemList.css';
 import Modal from '../../components/UI/Modal/Modal';
+import Button from '../../components/UI/Button/Button';
 import Aux from '../../Aux';
 
 class ItemList extends Component{
@@ -36,7 +37,7 @@ class ItemList extends Component{
     }
     
     addItemHandler = (event) => {
-        event.preventDefault();
+        //event.preventDefault();
         const list = {
             purchaseId: this.state.id,
             purchaseName: this.state.name,
@@ -106,9 +107,9 @@ class ItemList extends Component{
                         </tbody>
                     </table>
                 </div>
-                <button onClick={this.addModalHandler}>Add</button>
+                <Button clicked={this.addModalHandler}>Add</Button>
                 <form>
-                    <button onClick={this.clearItem}>Clear All Item</button>
+                    <Button clicked={this.clearItem}>Clear All Item</Button>
                 </form>
                 <Modal show={this.state.addingModal} modalClosed={this.closeModalHandler}>
                     <form>
@@ -132,9 +133,9 @@ class ItemList extends Component{
                             name="date"
                             value={this.state.date}
                             onChange={this.onChange} />
-                        <button onClick={this.addItemHandler}>Add Item</button>
+                        <Button clicked={this.addItemHandler}>Add Item</Button>
                     </form>
-                    <button onClick={this.closeModalHandler}>Cancel</button>
+                    <Button clicked={this.closeModalHandler}>Cancel</Button>
                 </Modal>
             </div>
         );
