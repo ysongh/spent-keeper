@@ -14,7 +14,6 @@ const modal = props => {
             transform: props.show ? 'translateY(0)' : 'translateY(-100vh)',
             opacity: props.show ? '1' : '0'
         }}>
-        <h1>Add Item</h1>
         {props.children}
       </div>
     </Aux>

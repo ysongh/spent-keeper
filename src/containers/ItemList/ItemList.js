@@ -15,7 +15,8 @@ class ItemList extends Component{
             name: '',
             price: '',
             date:'',
-            addingModal: false,
+            addModal: false,
+            clearAllModal: false
         };
         this.onChange = this.onChange.bind(this);
     }
@@ -57,12 +58,20 @@ class ItemList extends Component{
         this.setState({[e.target.name]: e.target.value});
     }
     
-    addModalHandler = () => {
-        this.setState({addingModal: true});
+    openAddModalHandler = () => {
+        this.setState({addModal: true});
     }
     
-    closeModalHandler = () => {
-        this.setState({addingModal: false});
+    closeAddModalHandler = () => {
+        this.setState({addModal: false});
+    }
+    
+    openClearAllModalHandler = () => {
+        this.setState({clearAllModal: true});
+    }
+    
+    closeClearAllModalHandler = () => {
+        this.setState({clearAllModal: false});
     }
     
     render () {
@@ -107,11 +116,9 @@ class ItemList extends Component{
                         </tbody>
                     </table>
                 </div>
-                <Button clicked={this.addModalHandler}>Add</Button>
-                <form>
-                    <Button clicked={this.clearItem}>Clear All Item</Button>
-                </form>
-                <Modal show={this.state.addingModal} modalClosed={this.closeModalHandler}>
+                <Button clicked={this.openAddModalHandler}>Add</Button>
+                <Modal show={this.state.addModal} modalClosed={this.closeAddModalHandler}>
+                    <h1>Add Item</h1>
                     <form>
                         <input type="name"
                             placeholder="Item ID"
@@ -135,7 +142,15 @@ class ItemList extends Component{
                             onChange={this.onChange} />
                         <Button clicked={this.addItemHandler}>Add Item</Button>
                     </form>
-                    <Button clicked={this.closeModalHandler}>Cancel</Button>
+                    <Button clicked={this.closeAddModalHandler}>Cancel</Button>
+                </Modal>
+                <Button clicked={this.openClearAllModalHandler}>Clear All Item</Button>
+                <Modal show={this.state.clearAllModal} modalClosed={this.closeClearAllModalHandler}>
+                    <h1>Clear All</h1>
+                    <form>
+                        <Button clicked={this.clearItem}>Yes</Button>
+                    </form>
+                    <Button clicked={this.closeClearAllModalHandler}>No</Button>
                 </Modal>
             </div>
         );
