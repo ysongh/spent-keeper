@@ -38,7 +38,7 @@ class ItemList extends Component{
     }
     
     addItemHandler = (event) => {
-        //event.preventDefault();
+        event.preventDefault();
         const list = {
             purchaseId: this.state.id,
             purchaseName: this.state.name,
@@ -49,6 +49,12 @@ class ItemList extends Component{
         axios.post('/lists.json', list)
             .then(response => console.log(response))
             .catch(error => console.log(error));
+            
+        this.setState({id: ''});
+        this.setState({name: ''});
+        this.setState({price: ''});
+        this.setState({date: ''});
+        this.setState({addModal: false});
     }
     clearItem = () => {
         axios.delete('/lists.json');
