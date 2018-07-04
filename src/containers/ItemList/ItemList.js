@@ -4,6 +4,7 @@ import axios from '../../axios-lists';
 import classes from './ItemList.css';
 import Modal from '../../components/UI/Modal/Modal';
 import Button from '../../components/UI/Button/Button';
+import Spinner from '../../components/UI/Spinner/Spinner';
 import Aux from '../../Aux';
 
 class ItemList extends Component{
@@ -16,7 +17,8 @@ class ItemList extends Component{
             price: '',
             date:'',
             addModal: false,
-            clearAllModal: false
+            clearAllModal: false,
+            loading: true
         };
         this.onChange = this.onChange.bind(this);
     }
@@ -35,6 +37,7 @@ class ItemList extends Component{
                 this.setState({lists: fetchedLists});
             })
             .catch(error => {});
+        this.setState({loading: false});
     }
     
     addItemHandler = (event) => {
@@ -81,47 +84,51 @@ class ItemList extends Component{
     }
     
     render () {
-        let list = <p>loading...</p>;
+        let list = <Spinner />;
         
         if(this.state.lists){
             list = (
                 <Aux>
-                    {
-                        this.state.lists.map( list => {
-                            return (
-                                <tr
-                                    key={list.purchaseId}>
-                                    <td>{list.purchaseId}</td>
-                                    <td>{list.purchaseName}</td>
-                                    <td>{list.price}</td>
-                                    <td>{list.date}</td>
+                    <div className={classes.row}>
+                        <table className={classes.table}>
+                            <thead>
+                                <tr> 
+                                    <th>Purchase ID</th>
+                                    <th>Purchase Name</th>
+                                    <th>Price</th>
+                                    <th>Date</th>
                                 </tr>
-                            );
-                        })
-                        
-                    }
-                    </Aux>
+                            </thead>
+                             <tbody>
+                                {
+                                    this.state.lists.map( list => {
+                                        return (
+                                            <tr
+                                                key={list.purchaseId}>
+                                                <td>{list.purchaseId}</td>
+                                                <td>{list.purchaseName}</td>
+                                                <td>{list.price}</td>
+                                                <td>{list.date}</td>
+                                            </tr>
+                                        );
+                                    })
+                                    
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </Aux>
                 );
+        }
+        
+        if(this.state.loading){
+            list = <Spinner />;
         }
         
         return (
             <div>
                 <h1>Your List</h1>
-                <div className={classes.row}>
-                    <table className={classes.table}>
-                        <thead>
-                            <tr> 
-                                <th>Purchase ID</th>
-                                <th>Purchase Name</th>
-                                <th>Price</th>
-                                <th>Date</th>
-                            </tr>
-                        </thead>
-                         <tbody>
-                            {list}
-                        </tbody>
-                    </table>
-                </div>
+                {list}
                 <Button clicked={this.openAddModalHandler}>Add</Button>
                 <Modal show={this.state.addModal} modalClosed={this.closeAddModalHandler}>
                     <h1>Add Item</h1>
