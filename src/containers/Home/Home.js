@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import Records from '../../components/Records/Records';
 import classes from './Home.css';
@@ -26,6 +27,10 @@ class Home extends Component{
                         onChange={this.newPNameChangedHandler} />
                     <button onClick={() => this.props.onStoreItem(this.state.pName)}>Add Item Name</button>
                 </div>
+                <br />
+                <Link className={classes.center} to="/itemList">
+                    Go to Your Item List
+                </Link>
             </div>
         );
     }
