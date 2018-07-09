@@ -58,6 +58,7 @@ class ItemList extends Component{
         this.setState({price: ''});
         this.setState({date: ''});
         this.setState({addModal: false});
+        this.props.history.push('/success');
     }
     clearItem = () => {
         axios.delete('/lists.json');
