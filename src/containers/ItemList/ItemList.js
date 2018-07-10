@@ -62,6 +62,7 @@ class ItemList extends Component{
     }
     clearItem = () => {
         axios.delete('/lists.json');
+        this.props.history.push('/success');
     }
     
     onChange(e){
@@ -161,9 +162,7 @@ class ItemList extends Component{
                 <Button clicked={this.openClearAllModalHandler}>Clear All Item</Button>
                 <Modal show={this.state.clearAllModal} modalClosed={this.closeClearAllModalHandler}>
                     <h1>Clear All</h1>
-                    <form>
-                        <Button clicked={this.clearItem}>Yes</Button>
-                    </form>
+                    <Button clicked={this.clearItem}>Yes</Button>
                     <Button clicked={this.closeClearAllModalHandler}>No</Button>
                 </Modal>
             </div>
