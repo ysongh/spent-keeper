@@ -10,6 +10,11 @@ form{
     width: 20%;
 }
 
+td{
+    padding: 2px;
+    border: 1px solid darkred;
+}
+
 .row{
     width: 100%;
     color: white;
