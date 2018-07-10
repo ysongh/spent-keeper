@@ -103,10 +103,10 @@ class ItemList extends Component{
                             </thead>
                              <tbody>
                                 {
-                                    this.state.lists.map( list => {
+                                    this.state.lists.map((list, index) => {
                                         return (
                                             <tr
-                                                key={list.purchaseId}>
+                                                key={index}>
                                                 <td>{list.purchaseName}</td>
                                                 <td>{list.price}</td>
                                                 <td>{list.quantity}</td>
