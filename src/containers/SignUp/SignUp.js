@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { Link } from 'react-router-dom';
 
 import Button from '../../components/UI/Button/Button';
 
@@ -16,6 +17,19 @@ class SignUp extends Component{
         this.setState({[e.target.name]: e.target.value});
     }
     
+    signUpHandler = (event) => {
+        event.preventDefault();
+        const authData = {
+            username: this.state.username,
+            password: this.state.password
+        };
+        
+        console.log(authData);
+            
+        this.setState({username: ''});
+        this.setState({password: ''});
+    }
+    
     render() {
         return (
             <div>
@@ -31,8 +45,11 @@ class SignUp extends Component{
                         name="password"
                         value={this.state.password}
                         onChange={this.onChange} />
-                    <Button clicked={this.addItemHandler}>Sign Up</Button>
+                    <Button clicked={this.signUpHandler}>Sign Up</Button>
                 </form>
+                <Link style={{display: 'block', textAlign: 'center'}} to="/">
+                    Back
+                </Link>
             </div>
         );
     }
