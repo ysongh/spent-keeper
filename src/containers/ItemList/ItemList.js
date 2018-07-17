@@ -131,6 +131,7 @@ class ItemList extends Component{
         return (
             <div>
                 <h1>Your List</h1>
+                <p>Email = {localStorage.email}</p>
                 {list}
                 <Button clicked={this.openAddModalHandler}>Add</Button>
                 <Modal show={this.state.addModal} modalClosed={this.closeAddModalHandler}>

@@ -33,8 +33,9 @@ class LogIn extends Component{
                 localStorage.setItem('token', res.data.idToken);
                 localStorage.setItem('expirationDate', expirationDate);
                 localStorage.setItem('userId', res.data.localId);
+                localStorage.setItem('email', res.data.email);
                 
-                console.log("success" + res.data.localId);
+                this.props.history.push('/itemList');
             })
             .catch(err => {
                 console.log(err);

@@ -33,7 +33,9 @@ class SignUp extends Component{
                 localStorage.setItem('token', res.data.idToken);
                 localStorage.setItem('expirationDate', expirationDate);
                 localStorage.setItem('userId', res.data.localId);
+                localStorage.setItem('email', res.data.email);
                 
+                this.props.history.push('/itemList');
             })
             .catch(err => {
                 console.log(err.res.data.error);
@@ -48,7 +50,7 @@ class SignUp extends Component{
     render() {
         return (
             <div>
-                <h1>Sign In</h1>
+                <h1>Sign Up</h1>
                 <form>
                     <input type="email"
                         placeholder="Email"
