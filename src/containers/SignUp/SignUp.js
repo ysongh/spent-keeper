@@ -62,6 +62,9 @@ class SignUp extends Component{
                         onChange={this.onChange} />
                     <Button clicked={this.signUpHandler}>Sign Up</Button>
                 </form>
+                <Link style={{display: 'block', textAlign: 'center'}} to="/logIn">
+                    Log In
+                </Link>
                 <Link style={{display: 'block', textAlign: 'center'}} to="/">
                     Back
                 </Link>

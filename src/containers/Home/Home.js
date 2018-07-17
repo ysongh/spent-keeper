@@ -31,6 +31,9 @@ class Home extends Component{
                 <Link className={classes.center} to="/itemList">
                     Go to Your Item List
                 </Link>
+                <Link className={classes.center} to="/logIn">
+                    Log In
+                </Link>
                 <Link className={classes.center} to="/signUp">
                     Sign Up
                 </Link>
