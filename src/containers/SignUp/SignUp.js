@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import axios from '../../axios-lists';
+
 import { Link } from 'react-router-dom';
 
 import Button from '../../components/UI/Button/Button';
@@ -7,7 +9,7 @@ class SignUp extends Component{
     constructor(){
         super();
         this.state = {
-            username: '',
+            email: '',
             password: '',
         };
         this.onChange = this.onChange.bind(this);
@@ -20,9 +22,22 @@ class SignUp extends Component{
     signUpHandler = (event) => {
         event.preventDefault();
         const authData = {
-            username: this.state.username,
+            email: this.state.email,
             password: this.state.password
         };
+        
+        axios.post('https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=AIzaSyCSAapw9FhwobTVoCrIX91W-LvYzIyn4VU' ,authData)
+            .then(res => {
+                const expirationDate = new Date(new Date().getTime() + res.data.expiresIn * 1000);
+                
+                localStorage.setItem('token', res.data.idToken);
+                localStorage.setItem('expirationDate', expirationDate);
+                localStorage.setItem('userId', res.data.localId);
+                
+            })
+            .catch(err => {
+                console.log(err.res.data.error);
+            });
         
         console.log(authData);
             
@@ -35,10 +50,10 @@ class SignUp extends Component{
             <div>
                 <h1>Sign In</h1>
                 <form>
-                    <input type="name"
-                        placeholder="Username"
-                        name="username"
-                        value={this.state.username}
+                    <input type="email"
+                        placeholder="Email"
+                        name="email"
+                        value={this.state.email}
                         onChange={this.onChange} />
                     <input type="password"
                         placeholder="Password"
