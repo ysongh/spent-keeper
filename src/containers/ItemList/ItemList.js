@@ -131,7 +131,6 @@ class ItemList extends Component{
         return (
             <div>
                 <h1>Your List</h1>
-                <p>Email = {localStorage.email}</p>
                 {list}
                 <Button clicked={this.openAddModalHandler}>Add</Button>
                 <Modal show={this.state.addModal} modalClosed={this.closeAddModalHandler}>
@@ -167,8 +166,11 @@ class ItemList extends Component{
                     <Button clicked={this.clearItem}>Yes</Button>
                     <Button clicked={this.closeClearAllModalHandler}>No</Button>
                 </Modal>
-                <Link style={{display: 'block', textAlign: 'center'}} to="/">
+                <Link style={{display: 'block', textAlign: 'center'}} to="/logOut">
                     Back
+                </Link>
+                <Link style={{display: 'block', textAlign: 'center'}} to="/">
+                    Log Out {localStorage.email}
                 </Link>
             </div>
         );
