@@ -2,9 +2,9 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import Records from '../../components/Records/Records';
 import classes from './Home.css';
 import * as actionCreators from '../../store/actions/index';
+import shoppingImage from '../../assets/Images/shopping.png';
 
 class Home extends Component{
     state = {
@@ -19,14 +19,7 @@ class Home extends Component{
         return (
             <div>
                 <h1 className={classes.h1}>Welcome to Spent Keeper</h1>
-                <Records />
-                <div className={classes.form}>
-                    <p>Item Name</p>
-                    <input
-                        type="text"
-                        onChange={this.newPNameChangedHandler} />
-                    <button onClick={() => this.props.onStoreItem(this.state.pName)}>Add Item Name</button>
-                </div>
+                <img src={shoppingImage} alt="Shopping Cart" />
                 <br />
                 <Link className={classes.center} to="/itemList">
                     Go to Your Item List

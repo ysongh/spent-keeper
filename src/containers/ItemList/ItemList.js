@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import axios from '../../axios-lists';
+import { Link } from 'react-router-dom';
 
 import classes from './ItemList.css';
 import Modal from '../../components/UI/Modal/Modal';
@@ -165,6 +166,9 @@ class ItemList extends Component{
                     <Button clicked={this.clearItem}>Yes</Button>
                     <Button clicked={this.closeClearAllModalHandler}>No</Button>
                 </Modal>
+                <Link style={{display: 'block', textAlign: 'center'}} to="/">
+                    Back
+                </Link>
             </div>
         );
     }

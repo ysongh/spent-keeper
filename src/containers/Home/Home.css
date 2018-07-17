@@ -2,6 +2,16 @@ h1{
     text-align: center;
 }
 
+img{
+    background-color: white;
+    padding: 8px;
+    height: 100%;
+    box-sizing: border-box;
+    border-radius: 5px;
+    display: block;
+    margin: 0 auto;
+}
+
 .center{
     display: block;
     text-align: center;
