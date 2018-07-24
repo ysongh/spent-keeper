@@ -11,6 +11,7 @@ class SignUp extends Component{
         this.state = {
             email: '',
             password: '',
+            error: ''
         };
         this.onChange = this.onChange.bind(this);
     }
@@ -38,7 +39,8 @@ class SignUp extends Component{
                 this.props.history.push('/itemList');
             })
             .catch(err => {
-                console.log(err.res.data.error);
+                console.log(err);
+                this.setState({error: "Invalid, try again"});
             });
         
         console.log(authData);
@@ -51,6 +53,7 @@ class SignUp extends Component{
         return (
             <div>
                 <h1>Sign Up</h1>
+                <p style={{color: 'red'}}>{this.state.error}</p>
                 <form>
                     <input type="email"
                         placeholder="Email"

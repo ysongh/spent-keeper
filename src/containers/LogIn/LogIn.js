@@ -11,6 +11,7 @@ class LogIn extends Component{
         this.state = {
             email: '',
             password: '',
+            error: ''
         };
         this.onChange = this.onChange.bind(this);
     }
@@ -39,6 +40,7 @@ class LogIn extends Component{
             })
             .catch(err => {
                 console.log(err);
+                this.setState({error: "Invalid, try again"});
             });
         
         console.log(authData);
@@ -51,6 +53,7 @@ class LogIn extends Component{
         return (
             <div>
                 <h1>Log In</h1>
+                <p style={{color: 'red'}}>{this.state.error}</p>
                 <form>
                     <input type="email"
                         placeholder="Email"
