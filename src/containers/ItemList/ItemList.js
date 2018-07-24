@@ -47,7 +47,8 @@ class ItemList extends Component{
             purchaseName: this.state.name,
             price: this.state.price,
             quantity: this.state.quantity,
-            date: this.state.date
+            date: this.state.date,
+            email: localStorage.email
         };
         
         axios.post('/lists.json', list)
@@ -100,6 +101,7 @@ class ItemList extends Component{
                                     <th>Price</th>
                                     <th>Quantity</th>
                                     <th>Date</th>
+                                    <th>Email</th>
                                 </tr>
                             </thead>
                              <tbody>
@@ -109,9 +111,10 @@ class ItemList extends Component{
                                             <tr
                                                 key={index}>
                                                 <td>{list.purchaseName}</td>
-                                                <td>{list.price}</td>
+                                                <td>${list.price}</td>
                                                 <td>{list.quantity}</td>
                                                 <td>{list.date}</td>
+                                                <td>{list.email}</td>
                                             </tr>
                                         );
                                     })
