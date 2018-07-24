@@ -166,12 +166,16 @@ class ItemList extends Component{
                     <Button clicked={this.clearItem}>Yes</Button>
                     <Button clicked={this.closeClearAllModalHandler}>No</Button>
                 </Modal>
-                <Link style={{display: 'block', textAlign: 'center'}} to="/logOut">
-                    Back
-                </Link>
-                <Link style={{display: 'block', textAlign: 'center'}} to="/">
-                    Log Out {localStorage.email}
-                </Link>
+                <Button>
+                    <Link style={{display: 'block', textAlign: 'center'}} to="/logOut">
+                        Back
+                    </Link>
+                </Button>
+                <Button>
+                    <Link style={{display: 'block', textAlign: 'center'}} to="/">
+                        Log Out {localStorage.email}
+                    </Link>
+                </Button>
             </div>
         );
     }

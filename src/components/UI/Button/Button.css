@@ -1,12 +1,13 @@
 .Button {
     display: block;
-    background-color: blue;
-    border: none;
+    background-color: gray;
+    border: 2px solid green;
+    border-radius: 6px;
     color: white;
     outline: none;
     cursor: pointer;
     font: inherit;
-    padding: 10px;
+    padding: 2px;
     margin: 10px auto;
     font-weight: bold;
 }
