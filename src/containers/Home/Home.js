@@ -16,12 +16,10 @@ class Home extends Component{
         this.setState({ pName: newPName.target.value});
     }
     
-    
-    
     render() {
         return (
             <div>
-                <h1 className={classes.h1}>Welcome to Spent Keeper</h1>
+                <h1 className={classes.homeTitle}>Welcome to Spent Keeper</h1>
                 <img src={shoppingImage} alt="Shopping Cart" />
                 <br />
                 <Button>

@@ -2,6 +2,12 @@ h1{
     text-align: center;
 }
 
+.homeTitle{
+    text-align: center;
+    color: blue;
+    font-family: fantasy;
+}
+
 img{
     background-color: white;
     padding: 8px;
