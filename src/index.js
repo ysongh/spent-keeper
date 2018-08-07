@@ -7,10 +7,10 @@ import thunk from 'redux-thunk';
 import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
-import recordReducer from './store/reducers/record';
+import authReducer from './store/reducers/auth';
 
 const rootReducer = combineReducers({
-  record: recordReducer
+  auth: authReducer
 });
 
 const logger = store => {

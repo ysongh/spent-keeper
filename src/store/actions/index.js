@@ -1,3 +1,0 @@
-export{
-    storeItem
-} from './record';

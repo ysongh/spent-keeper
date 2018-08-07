@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import axios from '../../axios-lists';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import classes from './ItemList.css';
 import Modal from '../../components/UI/Modal/Modal';
@@ -184,4 +185,10 @@ class ItemList extends Component{
     }
 }
 
-export default ItemList;
+const mapStateToProps = state => {
+    return{
+        token: state.auth.token
+    };
+};
+
+export default connect(mapStateToProps)(ItemList);
